@@ -1,4 +1,4 @@
-import { parseISO, differenceInHours, getHours, isSaturday, isSunday } from 'date-fns'
+import { parseISO, differenceInHours } from 'date-fns'
 
 export const isValidBooking = (fromTimeString, toTimeString) => {
   var fromTime = parseISO(fromTimeString);
@@ -9,22 +9,4 @@ export const isValidBooking = (fromTimeString, toTimeString) => {
     return false
   }
   return true;
-}
-
-export const getRateType = (booking) => {
-  var fromTime = parseISO(booking.from);
-
-  if (isSaturday(fromTime)) {
-    return 'Sat'
-  }
-
-  if(isSunday(fromTime)) {
-    return 'Sun'
-  }
-
-  var fromHourOfDay = getHours(fromTime)
-  if (fromHourOfDay > 6 && fromHourOfDay < 20) {
-    return 'Day'
-  }
-  return 'Night'
 }
