@@ -40,12 +40,20 @@ describe('rate type', () => {
 
 describe('get hourly rate', () => {
   it('should return day hourly rate', () => {
-    const rate = getHourlyRate(rateType.DAY)
+    const booking = {
+      from: new Date("2017-10-23T08:00:00+11:00"),
+      to: new Date("2017-10-23T11:00:00+11:00")
+    }
+    const rate = getHourlyRate(booking)
     expect(rate).toEqual(38)
   })
 
   it('should return night hourly rate', () => {
-    const rate = getHourlyRate(rateType.NIGHT)
+    const booking = {
+      from: new Date("2017-10-23T20:00:00+11:00"),
+      to: new Date("2017-10-24T11:00:00+11:00")
+    }
+    const rate = getHourlyRate(booking)
     expect(rate).toEqual(42.93)
   })
 })

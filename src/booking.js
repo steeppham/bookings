@@ -1,7 +1,7 @@
 import { parseISO, differenceInHours } from 'date-fns'
 
 export const isBookingValid = (booking) => {
-  const difference = differenceInHours(booking.to, booking.from)
+  const difference = durationOfBookingInHours(booking)
   if (difference < 1 || difference > 24) {
     return false
   }
@@ -13,3 +13,5 @@ export const parseBooking = (booking) => ({
   from: parseISO(booking.from),
   to: parseISO(booking.to)
 })
+
+export const durationOfBookingInHours = (booking) => differenceInHours(booking.to, booking.from)

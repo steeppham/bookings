@@ -1,4 +1,4 @@
-import { parseISO, getHours, isSaturday, isSunday } from 'date-fns'
+import { getHours, isSaturday, isSunday } from 'date-fns'
 
 export const rateType = Object.freeze({
   DAY: 'Day',
@@ -14,7 +14,6 @@ hourlyRate[rateType.SATURDAY] = 45.91
 hourlyRate[rateType.SUNDAY] = 60.85
 
 export const getRateType = (booking) => {
-
   if (isSaturday(booking.from)) {
     return rateType.SATURDAY
   }
@@ -30,6 +29,7 @@ export const getRateType = (booking) => {
   return rateType.NIGHT
 }
 
-export const getHourlyRate = (type) => {
+export const getHourlyRate = (booking) => {
+  const type = getRateType(booking)
   return hourlyRate[type]
 }
