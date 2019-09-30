@@ -1,39 +1,51 @@
-import { getRateType } from './booking-rates'
+import { getRateType, rateType, getHourlyRate } from './booking-rates'
 
 describe('rate type', () => {
   it('should be a day rate', () => {
-    var booking = {
+    const booking = {
       from: "2017-10-23T08:00:00+11:00",
       to: "2017-10-23T11:00:00+11:00"
     }
-    var rateType = getRateType(booking);
-    expect(rateType).toEqual('Day');
+    const type = getRateType(booking);
+    expect(type).toEqual(rateType.DAY);
   })
 
   it('should be night rate', () => {
-    var booking = {
+    const booking = {
       from: "2017-10-23T20:00:00+11:00",
       to: "2017-10-24T11:00:00+11:00"
     }
-    var rateType = getRateType(booking);
-    expect(rateType).toEqual('Night');
+    const type = getRateType(booking);
+    expect(type).toEqual(rateType.NIGHT);
   })
 
   it('should be saturday rate', () => {
-    var booking = {
+    const booking = {
       from: "2019-10-05T18:00:00+11:00",
       to: "2017-10-05T22:00:00+11:00"
     }
-    var rateType = getRateType(booking);
-    expect(rateType).toEqual('Sat');
+    const type = getRateType(booking);
+    expect(type).toEqual(rateType.SATURDAY);
   })
 
   it('should be sunday rate', () => {
-    var booking = {
+    const booking = {
       from: "2019-10-06T18:00:00+11:00",
       to: "2017-10-06T22:00:00+11:00"
     }
-    var rateType = getRateType(booking);
-    expect(rateType).toEqual('Sun');
+    const type = getRateType(booking);
+    expect(type).toEqual(rateType.SUNDAY);
+  })
+})
+
+describe('get hourly rate', () => {
+  it('should return day hourly rate', () => {
+    const rate = getHourlyRate(rateType.DAY)
+    expect(rate).toEqual(38)
+  })
+
+  it('should return night hourly rate', () => {
+    const rate = getHourlyRate(rateType.NIGHT)
+    expect(rate).toEqual(42.93)
   })
 })
