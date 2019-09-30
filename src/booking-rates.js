@@ -14,17 +14,16 @@ hourlyRate[rateType.SATURDAY] = 45.91
 hourlyRate[rateType.SUNDAY] = 60.85
 
 export const getRateType = (booking) => {
-  var fromTime = parseISO(booking.from);
 
-  if (isSaturday(fromTime)) {
+  if (isSaturday(booking.from)) {
     return rateType.SATURDAY
   }
 
-  if(isSunday(fromTime)) {
+  if(isSunday(booking.from)) {
     return rateType.SUNDAY
   }
 
-  var fromHourOfDay = getHours(fromTime)
+  var fromHourOfDay = getHours(booking.from)
   if (fromHourOfDay > 6 && fromHourOfDay < 20) {
     return rateType.DAY
   }

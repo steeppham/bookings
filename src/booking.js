@@ -1,12 +1,15 @@
 import { parseISO, differenceInHours } from 'date-fns'
 
-export const isValidBooking = (fromTimeString, toTimeString) => {
-  var fromTime = parseISO(fromTimeString);
-  var toTime = parseISO(toTimeString)
-
-  var difference = differenceInHours(toTime, fromTime)
+export const isBookingValid = (booking) => {
+  const difference = differenceInHours(booking.to, booking.from)
   if (difference < 1 || difference > 24) {
     return false
   }
-  return true;
+  return true
 }
+
+export const parseBooking = (booking) => ({
+  id: booking.id,
+  from: parseISO(booking.from),
+  to: parseISO(booking.to)
+})
