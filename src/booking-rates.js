@@ -22,8 +22,9 @@ export const getRateType = (booking) => {
     return rateType.SUNDAY
   }
 
-  var fromHourOfDay = getHours(booking.from)
-  if (fromHourOfDay > 6 && fromHourOfDay < 20) {
+  const fromHourOfDay = getHours(booking.from)
+  const toHourOfDay = getHours(booking.to)
+  if (fromHourOfDay > 6 && fromHourOfDay < 20 && toHourOfDay < 20) {
     return rateType.DAY
   }
   return rateType.NIGHT

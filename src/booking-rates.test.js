@@ -19,6 +19,15 @@ describe('rate type', () => {
     expect(type).toEqual(rateType.NIGHT);
   })
 
+  it('should be night rate when period falls during the night', () => {
+    const booking = {
+      from: new Date("2017-10-23T18:00:00+11:00"),
+      to: new Date("2017-10-24T21:00:00+11:00")
+    }
+    const type = getRateType(booking);
+    expect(type).toEqual(rateType.NIGHT);
+  })
+
   it('should be saturday rate', () => {
     const booking = {
       from: new Date("2019-10-05T18:00:00+11:00"),
