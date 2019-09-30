@@ -1,4 +1,4 @@
-import { isBookingValid, parseBooking } from './booking'
+import { isBookingValid, parseBooking, durationOfBookingInHours } from './booking'
 
 describe('isBookingValid', () => {
   it('should be a valid booking time', () => {
@@ -50,5 +50,13 @@ describe('parseBooking', () => {
   it('should contain id field', () => {
     const parsedBooking = parseBooking(booking)
     expect(parsedBooking.id).toEqual(1)
+  })
+})
+
+describe('duration of booking', () => {
+  it('should return duration in hours', () => {
+    const booking = { from: new Date('2017-10-23T09:00:00+11:00'), to: new Date('2017-10-23T11:45:00+11:00')}
+    const duration = durationOfBookingInHours(booking)
+    expect(duration).toEqual(2.75)
   })
 })

@@ -4,13 +4,13 @@ describe('booking calculator', () => {
   describe('valid booking', () => {
     const booking = {
       id: 1,
-      from: "2017-10-23T08:00:00+11:00",
-      to: "2017-10-23T11:00:00+11:00"
+      from: "2017-10-20T09:00:00+11:00",
+      to: "2017-10-20T11:45:00+11:00"
     }
 
     it('should calculate total cost', () => {
       const result = calculateBooking(booking)
-      expect(result.total).toEqual(114)
+      expect(result.total).toEqual(104.5)
     })
 
     it('should be valid', () => {

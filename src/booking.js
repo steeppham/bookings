@@ -1,4 +1,4 @@
-import { parseISO, differenceInHours } from 'date-fns'
+import { parseISO, differenceInMinutes } from 'date-fns'
 
 export const isBookingValid = (booking) => {
   const difference = durationOfBookingInHours(booking)
@@ -14,4 +14,4 @@ export const parseBooking = (booking) => ({
   to: parseISO(booking.to)
 })
 
-export const durationOfBookingInHours = (booking) => differenceInHours(booking.to, booking.from)
+export const durationOfBookingInHours = (booking) => differenceInMinutes(booking.to, booking.from) / 60
