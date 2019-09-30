@@ -1,21 +1,20 @@
-import moment from 'moment';
+import { parseISO, differenceInHours, getHours } from 'date-fns'
 
 export const isValidBooking = (fromTimeString, toTimeString) => {
-  var fromTime = moment(fromTimeString);
-  var toTime = moment(toTimeString)
+  var fromTime = parseISO(fromTimeString);
+  var toTime = parseISO(toTimeString)
 
-  var duration = moment.duration(toTime.diff(fromTime)).asHours()
-  if (duration < 1 || duration >= 23) {
+  var difference = differenceInHours(toTime, fromTime)
+  if (difference < 1 || difference > 24) {
     return false
   }
-
   return true;
 }
 
 export const getRateType = (booking) => {
-  var fromTime = moment(booking.from);
+  var fromTime = parseISO(booking.from);
 
-  var fromHourOfDay = fromTime.hour();
+  var fromHourOfDay = getHours(fromTime)
   if (fromHourOfDay > 6 && fromHourOfDay < 20) {
     return 'Day'
   }

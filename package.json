@@ -17,6 +17,7 @@
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "babel-jest": "^24.9.0",
+    "date-fns": "^2.4.1",
     "moment": "^2.24.0"
   }
 }

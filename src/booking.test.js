@@ -17,7 +17,7 @@ describe('minimum booking time', () => {
   })
 
   it('should be an invalid booking time is over 24hrs', () => {
-    var isValid = isValidBooking('2017-05-23T08:00:00+11:00', '2017-05-24T08:00:00+11:00');
+    var isValid = isValidBooking('2017-05-23T08:00:00+11:00', '2017-05-24T09:00:00+11:00');
     expect(isValid).toBeFalsy();
   })
 })
